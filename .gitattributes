@@ -14,3 +14,4 @@
 .diff-exclude export-ignore
 README.md export-ignore
 Makefile export-ignore
+i2.wix export-ignore
