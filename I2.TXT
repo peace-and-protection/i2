@@ -2,7 +2,7 @@
 ------------
 -----------
 ----------
---------- i² 1.07
+--------- i² 1.08
 -------- a personal scripting challenge
 ------- by pai (i2@pairc.com)
 ------ www.pairc.com/i2/
