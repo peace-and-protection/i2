@@ -1,73 +1,73 @@
 -------------
 ------------
 -----------
----------- i² 1.05
---------- my personal scripting challenge
--------- by pai (i2@pairc.com)
-------- www.pairc.com/i2
-------
+----------
+--------- i² 1.07
+-------- a personal scripting challenge
+------- by pai (i2@pairc.com)
+------ www.pairc.com/i2/
 -----
 ---- introduction
 ---
 --
 -
 
-i² is a 'full' script written for mirc 5.82. (a script designed to do a lot of general tasks, as opposed to an 'addon' script with one specific purpose)
+i² is a 'full' script written for mirc 6.01. (a script designed to do a lot of general tasks, as opposed to an 'addon' script with one specific purpose)
 
-i² was designed slightly different than most scripts. It was created for many different reasons- For one, I needed a break from scripting p&p, so I started designing something different. As well, I wanted to design a script that was more light-weight, could run fine on lower end machines, and be easily transported around on a floppy, as well as just being easier to manage and comprehend.
+i² was designed slightly different than most scripts. It was created for many different reasons- For one, I needed a break from scripting pnp, so I started designing something different. As well, I wanted to design a script that was more light-weight, could run fine on lower end machines, and be easily transported around on a floppy, as well as just being easier to manage and comprehend.
 
-My main goal, however, was simply to see how much I could fit into a single script file. The end result is i², checking in at exactly 30,000 bytes, the 'limit' for a mirc script file. I know you can load larger files, or load multiple files, but that's not the point. I wanted to see what I could do in a single, 30,000 byte script. I think I did rather well. :) For the record, this text file is exactly 60,000 bytes, and the original zip is exactly 30,000 bytes. Coincidence?
-
-
----
--- loading i²
--
-
-Unlike most full scripts, i² doesn't come with mirc or a mirc.ini file. Simply put i2.mrc into your mirc directory, and type '/load -rs i2.mrc' (without the quotes) in any window. You should also exit mirc and delete popups.ini, if you still have mirc's default popups.
-
-When i² is loaded, it will set any default settings if you haven't previously loaded it, and all features work without needing any settings, so you can immediately start using i² and worry about browsing through the configuration options later.
+My main goal, however, was simply to see how much I could fit into a single script file. The end result is i², checking in at exactly 30,000 bytes, the 'limit' for a mirc script file. I know you can load larger files, or load multiple files, but that's not the point. I wanted to see what I could do in a single, 30,000 byte script. I think I did rather well. :) For the record, this text file is 60,000 bytes, and the original zip was 30,000 bytes up through version 1.05- it just became too much work to cut the zip size down.
 
 
----
--- features
--
 
-The following features are each covered in more detail in separate sections.
+----
+--- loading i²
+--
 
- away system
- channel protection
- userlist
- clone detection and scans
- messages window
- nicklist coloring
- ctcps
- pinging
- mirc titlebar
- nickname completion
- flashing
- nicknames
- channels
- notify
- sound system
- graphical user interface
- being banned
- sound schemes
- other display
- miscellaneous
+i² doesn't come with mirc or a mirc.ini file. Simply put i2.mrc into your mirc directory, and type '/load -rs i2.mrc' (without the quotes) in any window. You should also exit mirc and delete popups.ini, if you still have mirc's default popups.
 
- function keys
- commands
- popups
- configuration
+Once i² is loaded, you can immediately start using i² and worry about browsing through the configuration options later, if you desire- everything works 'out of the box'.
+
+
+----
+--- features
+--
+
+The following features are covered in more detail in separate sections.
+
+ -- away system
+ -- channel protection
+ -- userlist
+ -- clone detection
+ -- messages window
+ -- ctcps
+ -- pinging
+ -- mirc titlebar
+ -- nickname completion
+ -- flashing
+ -- nicknames
+ -- channels
+ -- notify
+ -- sound system
+ -- dialog interface
+ -- being banned
+ -- sound schemes
+ -- other display
+ -- miscellaneous
+
+ -- function keys
+ -- commands
+ -- popups
+ -- configuration
 
 You can search this file for '-- section' to find any of the sections above, or for '-- /command' for notes on that command.
 
 
----
--- away system
--
+----
+--- away system
+--
 
-i² includes a simple but comprehensive away system. Use popups, f11, /away, or /a to set yourself away, and popups, f12, or /b to set yourself back. You will be asked for a reason, then set away. (you can also specify a reason on the command line using /a.)
+i² includes a simple but comprehensive away system. Use popups, f11, /away, or /a to set yourself away, and popups, f12, or /b to set yourself back. You will be asked for a reason, then set away. (you can also specify a reason on the command line using /a.) When you set away and back, this is done on all open servers. (there is no way in i² to set away on a single server.)
 
 When you set away and back, you will announce this in all channels. To avoid this and set away/back quietly, choose the appropriate popup, or hold ctrl while pressing f11 or f12, or use the . (dot) prefix with the /a or /b command. (ie use /.a instead of /a)
 
@@ -79,16 +79,16 @@ i² can automatically change your nickname to something else while you are away, 
 
 i² can automatically set you away after a certain amount of time, either quietly or announcing in open channels. The amount of time can be set in away system configuration. (/cfg a) Enter a number of minutes, or leave it blank to disable the auto-away feature. You can also configure whether to set auto-away quietly or not. You can configure mirc (under options, irc switches) to automatically set back on keypress- i² will set you back quietly or not depending on whether you have auto-away set to be quiet or not.
 
-From away system configuration you can also turn the pager and message logging on or off, as well as select a sound file for your pager. If no sound is selected and your pager is activated, a beep will be used. A user can page you (if your pager is on) by sending your a ctcp of page, with an optional message. When you are paged, your pager will sound, the mirc icon will flash if not active, and within mirc the messages window will be made active with a line showing you who paged you.
+From away system configuration you can also turn the pager and message logging on or off, as well as select a sound file for your pager. If no sound is selected and your pager is activated, a beep will be used. A user can page you (if your pager is on) by sending your a ctcp of page, with an optional message. When you are paged, your pager will sound, mirc will flash if not active, and within mirc the messages window will be made active with a line showing you who paged you.
 
 Message logging uses mirc's built-in messages window. (aka dedicated query window) If message logging is enabled and you set away, all private messages will go to a single window, which will be shown to you when you set back. (messages will still go to individual query windows if already open.) In addition, all private notices will appear in the window. Any channel text that has your nick or any of your highlight words (set in mirc options, perform section) will also be copied to the window.
 
 Note- even if you normally use the dedicated query window, this should not mess up your settings.
 
 
----
--- channel protection
--
+----
+--- channel protection
+--
 
 i² has some simple channel protections that will automatically run in any channel you have ops. Note that other channel ops will be immune to these protections. (ie a channel op will never be auto-kicked by i²)
 
@@ -109,9 +109,9 @@ Any user or clone that retriggers a protection within a certain number of second
 See the next section for details on i²'s userlist, which is related to channel protection.
 
 
----
--- userlist
--
+----
+--- userlist
+--
 
 i² has simple userlist features built-in. You can add users to your userlist as either immune users or exiled users.
 
@@ -119,7 +119,7 @@ Immune users are immune to all channel protections. An immune user will never se
 
 Exiled users will automatically be kicked and banned as soon as they join, in any channel you have ops in. (unlike channel protections, this works in all channels you have ops in, disregarding the 'protect channels' list.)
 
-You can add and remove users from your userlist using nicklist popups, under 'lists'. From there you can add or remove from the immune or exiled lists. (if you add a user to the exiled list from the nicklist popups, you will immediately bankick them if you are opped.) Adding users in this way always uses the standard (type 3) *!*ident@*.domain.com mask. (use the userlist editor for better control over this.) From these popups, you can also add and remove nicknames on mirc's protect list, or add users by mask to mirc's auto-op list for a specific channel. (see mirc options to enable these lists, or mirc help for details on how these work) You can also permanently or temporarily ignore users.
+You can add and remove users from your userlist using nicklist or query popups, under 'lists'. From there you can add or remove from the immune or exiled lists. (if you add a user to the exiled list from the nicklist popups, you will immediately bankick them if you are opped.) Adding users in this way always uses the standard (type 3) *!*ident@*.domain.com mask. (use the userlist editor for better control over this.) From these popups, you can also add and remove users by address or mask to mirc's protect, auto-op, and auto-voice lists for a specific channel. (see mirc options to enable these lists, or mirc help for details on how these work) You can also permanently or temporarily ignore users.
 
 Note that i² is not 'smart' enough to bankick exiled users that are already in the channel when you become opped.
 
@@ -128,9 +128,9 @@ You can use the 'userlist' popup (channel or menubar) or the /user command to vi
 The userlist and userlist editor are designed to be compatible with other scripts that use userlevels. Users in your userlist with other levels (from other scripts) will also be shown in the /user command, and can be removed. You cannot, however, view or change these 'other' levels- so be aware of this if your other scripts use userlevels. (i² does not use numeric user levels, so there should be no conflicts there.)
 
 
----
--- clone detection and scans
--
+----
+--- clone detection
+--
 
 i² will display when a clone joins the channel, telling you how many clones the user has and their nicks, using bold to grab your attention. A note will be included reminding you that you can press f7 for 'details'. f7 at that time will run a clone scan on that channel.
 
@@ -143,9 +143,9 @@ From this window, you can select one or more users, just like a nicklist, and ri
 For each user, the window will show the scanned address, a number, the nickname, and the user's full address. A total count of matching users will be shown in the window's titlebar.
 
 
----
--- messages window
--
+----
+--- messages window
+--
 
 i² uses mirc's built-in messages window (aka dedicated query window) for a number of useful purposes. Not only does the away system make clever use of it (see above) but you can also use it to conveniently catch notices. In miscellaneous configuration (/cfg) you can separately configure i² to show op and channel notices and/or private notices in this separate window. You can also set the window to open minimized or not.
 
@@ -154,16 +154,9 @@ This is most useful to keep track of your opnotices separately, or keep all your
 Note that the window will not catch dcc notices, which mirc automatically places in the Status Window anyway.
 
 
----
--- nicklist coloring
--
-
-i² can color-code your channel nicklists based on a user's channel status. You can select a different color for yourself as well as ops, voiced users, and regular users. You can configure the colors used via nicklist color configuration. (/cfg n)
-
-
----
--- ctcps
--
+----
+--- ctcps
+--
 
 i² has a number of features related to ctcp display and protection.
 
@@ -174,9 +167,9 @@ i² replies to finger, page, ping, time, and version ctcps. Like standard mirc (a
 i² will display ctcps in a channel if they originated from that channel, otherwise they will be shown to either the active, status, or a separate window, depending on how you configure it. (/cfg c) i² will display ctcp replies to the active, status, or a separate window depending on configuration as well- this can be a different setting from ctcps.
 
 
----
--- pinging
--
+----
+--- pinging
+--
 
 i² sends special pings that allow measuring ping times to millisecond (ms) accuracy, and will show these times in display of ping replies. i² can be set to show ping replies in the active, status, or a separate window, in ctcp configuration. (/cfg c; this is, again, a different setting than for normal ctcps and replies.)
 
@@ -187,18 +180,18 @@ If showing pings to a separate window, the information will be shown in columns,
 Note that i² will try to detect 'fake' ping replies, displaying it differently if the timestamp appears to be tampered with.
 
 
----
--- mirc titlebar
--
+----
+--- mirc titlebar
+--
 
-i² shows various useful bits of information in the titlebar of mirc. If you are away, your away reason will be shown there. If the current window is a channel, i² will show the number of ops, and voiced users, as well as percentages and a count of all users total. If the current window is not a channel, your current nickname and address will be shown instead.
+i² shows various useful bits of information in the titlebar of mirc. If you are away, your away reason will be shown there. If the current window is a channel, i² will show the number of ops, halfops, and voiced users, as well as percentages and a count of all users total. If the current window is not a channel, your current nickname and address will be shown instead.
 
 i² also measures your self-lag (lag to the server) approximately every thirty seconds, and will show this in the titlebar as well, rounded to the nearest tenth of a second. Other than the display in the titlebar, this measurement of self-lag is completely quiet and transparent.
 
 
----
--- nickname completion
--
+----
+--- nickname completion
+--
 
 i² contains some basic nickname completion features. You can choose the characters that will trigger nick completion in text you enter. (/cfg) To use nick completion, follow a partial nickname with the character. For example, if your trigger character is : (a colon) and you enter 'so: hello there' in a channel, it (may) appear as 'SomeGuy: hello there'. This only works for the first word in your line of text.
 
@@ -207,27 +200,27 @@ You can also trigger nick completion automatically when using i² one-letter comm
 Note that the nickname completion only works on users in the currently active channel window, and is not perfect. (for example, if more than one user matches, it may get the wrong user.) It does, however, work even if you specify many users for a command.
 
 
----
--- flashing
--
+----
+--- flashing
+--
 
-i² can automatically flash the mirc icon (if mirc is minimized) on certain events. It automatically flashes if you are disconnected from irc. You can also configure i² to flash for a new query window, any private message, and/or any dcc message. These can be enabled or disabled in miscellaneous config. (/cfg) Note that all flashing is disabled when you are away, except for a flash if you are paged.
+i² can automatically flash mirc (if mirc is not active) on certain events. It automatically flashes if you are disconnected from irc. You can also configure i² to flash for a new query window, any private message, and/or any dcc message. These can be enabled or disabled in miscellaneous config. (/cfg) Note that all flashing is disabled when you are away, except for a flash if you are paged.
 
 
----
--- nicknames
--
+----
+--- nicknames
+--
 
 If you try to change to a nickname that is already in use, i² will automatically perform a /whois on the user. You will also be told that you can press f7 to retry the nickname. If you press f7 at this time, i² will grab the nickname as soon as it is no longer in use. i² will check the nickname approximately every thirty seconds, and will change to that nickname as soon as it is free.
 
 You can also use the /retry command (/retry nick) to retry a nickname, or /retry by itself to halt any nickname being retried. Any retries are automatically halted if you get disconnected.
 
 
----
--- channels
--
+----
+--- channels
+--
 
-i² can store up to nine channels in the menubar/channel popups for quick access. The popups contain options for adding and removing the channels, as well as a popup to join them all and a popup to enable or disable auto-join. If auto-join is on, you will automatically join all channels in the popups when you connect to any server.
+i² can store any number of channels in the menubar/channel popups for quick access. The popups contain options for adding and removing the channels, as well as a popup to join them all and a popup to enable or disable auto-join. The channels stored are network-specific, as is the auto-join option. If auto-join is on, you will automatically join all channels stored for a given network when you connect.
 
 You can also press ctrl and f10 to join all channels in the popups.
 
@@ -236,9 +229,9 @@ If you try to join a channel but cannot, you will be told why (invite-only, bann
 You can also use the /retry command (/retry #channel) to retry a channel join, or /retry by itself to cancel all channel retries. More than one channel can be retried at a time. As soon as the ban or mode is removed that is preventing your access, or you gain access by some other method (an invite, for example) you will automatically join the channel within thirty seconds.
 
 
----
--- notify
--
+----
+--- notify
+--
 
 i² enhances mirc's built-in notify list to provide some additional functionality. In order to use the added features, you must enable them in display configuration. (/cfg d) Enable notify address checks, and optionally enable notify display in active window and hiding of notify if address check failed.
 
@@ -249,34 +242,38 @@ You can put an address mask as the first word of a user's notify note, and i² wi
 The option to display to the active window will show notify events in the current window; otherwise, they will show in the status window. If you elect to hide notify events if the address check fails, you will not be told when users come online or offline if their address does not match the mask given in their note. (see above) This will not apply to users who have no address check in their notify note.
 
 
----
--- sound system
--
+----
+--- sound system
+--
 
-i² has a simple sound system for playing mp3s and mp2s as well as the usual wavs and midi files. All the usual mirc options for sound files apply to wav and mid files, and you configure mp-related options in i². (/cfg m) From there, you can choose your mp player (leave it blank and you will use the default player associated with mp2/mp3 files) and your default mp directory, as well as a leech command. You can also configure i² to only play mp files locally (ie only on your screen) and/or to play mp files that other people play. Note that i² does not use mirc's mp3 playing features.
+i² has a simple sound system for playing mp3s and mp2s as well as the usual wavs and midi files. All the usual mirc options for sound files apply to wav and mid files, and you configure mp-related options in i². (/cfg m) From there, you can choose your mp player (leave it blank and you will use the default player associated with mp2/mp3 files) and your default mp directory, as well as a leech command. You can also configure i² to only play mp files locally (ie only on your screen) and/or to play mp files that other people play. You can check the last option if you wish to use mirc's internal mp3 playing features instead of an external player.
 
 The simplest way to play a sound is via i² commands. Use /wav for wavs, /mid for midis, and /m for mp2/mp3 files. The command by itself will ask you to pick a file. You can specify a filename, a wildcard mask, or one or more words to find a matching file- for example, '/m cure' would play a random mp that had the word 'cure' in it. Use * to play any random file, or ? to ask you what to search for. For example, '/mid *' will play a random midi. /r will play a random mp- a shortcut for '/m *'. You can also use /r just like /m, by specifying a string or filename. This is just for convenience.
 
 Once you've used /wav, /mid, /r, or /m, you can press f2 to repeat the last sound command you did. This is not the same as repeating the last sound. For example, if you do /m blah to find a random song containing 'blah', then f2 will find another random song containing 'blah'- perhaps not the same one. You can use f3 if you wish to just repeat the last sound played.
 
+You can use ctrl and f3 to delete the last played sound. If you have a directory named 'kill' in your mirc folder, the sound will instead be moved to that folder.
+
+You can press ctrl and f2 to stop any currently playing sound. If you stop an mp2/mp3 file this way, you can press ctrl and f2 again to resume playing.
+
 You can also play midis and wavs through mirc's /sound command- You can also use i²'s shortcut /s which has 'expanded' the command to automatically ask you to pick a file and action if you do not enter one. (an action is what is shown when you play the file) When using /wav and /mid you will also be asked for an action- if you do not give one, a default one stating what you are playing and it's size will be shown.
 
 In mp2/mp3 configuration you can set a leech command. (leave it blank to disable this feature) When a leech command is enabled, anytime you use /wav /mid or /m in a window, the command will be announced. Any user can use the command to 'leech' (get) the last file you played. They cannot request any old file- mirc however has support for this feature. The leech command is ignored if that user is already leeching that file.
 
-If the proper option is enabled in mp configuration, you will play mp files that other users play if they play them using a compatible script. (such as p&p or most mp scripts that use sound ctcps.) When a user plays an mp, the script will search for a matching file in your directory, and if found, it will tell you and play it.
+If the proper option is enabled in mp configuration, you will play mp files that other users play if they play them using a compatible script. (such as pnp or most mp scripts that use sound ctcps.) When a user plays an mp, the script will search for a matching file in your directory, and if found, it will tell you and play it.
 
 You can play files using /wav /mid and /m in the status window if you do not want to play them 'to a window' and have everyone see them.
 
-Sounds are sent using sound ctcps. Filenames with spaces are supported- In the sound ctcp, the spaces become question marks (?) to keep it as one word. (this is compatible with p&p and any mp script that uses $findfile().) Sounds with underscores in them are sent unchanged, but the text displayed onscreen and in the channel will have spaces instead of underscores. (it just looks nicer.)
+Sounds are sent using sound ctcps. Filenames with spaces are supported- In the sound ctcp, the spaces become question marks (?) to keep it as one word. (this is compatible with pnp and any mp script that uses $findfile().) Sounds with underscores in them are sent unchanged, but the text displayed onscreen and in the channel will have spaces instead of underscores. (it just looks nicer.)
 
 
----
--- graphical user interface
--
+----
+--- dialog interface
+--
 
 i² includes a simple gui interface for configuration. It is simple to use, however it is mouse-only- Sorry, there are no keyboard alternatives. (although if esc is set to minimize windows in mirc options, you can use esc to cancel)
 
-I decided against using mirc's dialogs as they would end up using significantly more space.
+I decided against using mirc's dialogs due to space concerns.
 
 Most dialogs contain some sort of checkboxes- they look like little buttons, and when clicked toggle between on (checked) and off. (blank) Some checkboxes are mutually exclusive- selecting one in the group will disable all others in the group. (similar to Windows radio buttons.) In this case you cannot turn off the current option- you must instead select another option.
 
@@ -285,16 +282,16 @@ Dialogs also contain buttons- ok/cancel buttons are used to confirm or cancel an
 Remember that, for options that require you to enter text or a number, you can always press esc or enter nothing for a 'blank' value. This will disable an option or feature.
 
 
----
--- being banned
--
+----
+--- being banned
+--
 
 If you are banned in a channel, i² will alert you to the fact. If you are opped, it will automatically unban it. If you were the one to set the ban, nothing more will happen, otherwise i² will attempt to kick the user who set the ban, for your (and possibly the channel's) safety. (it does not try to ban the user in 'revenge')
 
 
----
--- sound schemes
--
+----
+--- sound schemes
+--
 
 i² allows you to assign sounds to fourteen different irc events. (fifteen if you count the away system's pager) You can configure 'system' sounds (/cfg s) and 'user' sounds. (/cfg s u)
 
@@ -302,37 +299,33 @@ i² allows you to assign sounds to fourteen different irc events. (fifteen if you
 
 'User' sounds include- notify, new query, new dcc chat, new dcc file transfer, a file being fully received, a file being fully sent, and any file send/receive error.
 
-Sounds will play even when you are away. Note that the sounds for when you are opped and deopped also apply to being voiced and devoiced.
+Sounds will play even when you are away. Note that the sounds for when you are opped and deopped also apply to being voiced, devoiced, halfopped, and dehalfopped.
 
 Sounds can be any standard wav or midi file.
 
 
----
--- other display
--
+----
+--- other display
+--
 
 i² has a number of other display-related features and options.
 
-Most irc messages/errors/raws are displayed in a different (nicer?) format. A good number of raws are displayed to the active or appropriate (query/channel) window, in various colors. (ctcp color for errors, etc.) The topic and who set it is displayed to the channel. The mode and channel creation time are hidden on join, but shown in the channel if requested using /mode.
+Most irc messages/errors/raws are displayed in a different format. A good number of raws are displayed to the active or appropriate (query/channel) window, in various colors. (ctcp color for errors, etc.) The topic and who set it is displayed to the channel. The mode and channel creation time are hidden on join, but shown in the channel if requested using /mode.
 
-The 'user is away' message will no longer fill your status window- instead, it will appear once in the appropriate query (or other window) and then not appear again unless you don't message the user for 45 seconds.
-
-The same goes for 'no such user'- If you send multiple messages to a user who has left, you will only see one 'no such user' error, instead of it 'flooding' your status screen.
+The 'user is away' and 'no such user' messages will no longer fill your status window- instead, it will appear once in the appropriate query (or other window) and then not appear again unless you don't message the user for 45 seconds.
 
 Whois replies can be set to be shown in the active, status, or a separate @whois window. (in display configuration- /cfg d) You can also choose to show channel names replies (which you automatically receive when you join a channel) in status, the channel, or be entirely hidden. (also in display configuration) This only applies to names display when joining a channel- if you request a names list using /names #channel, it will always show in status.
 
-All i² display uses your standard mirc color choices. (these colors are chosen in mirc color configuration in tools or by pressing alt+k) For example, ctcps are shown using the ctcp color, notify events using the notify color, and many raws using ctcp, info, or normal colors. Many other i² echos are displayed using the 'other' color. No separate i² configuration is needed for display colors. (although you can configure ping time colors and nicklist colors, per earlier sections)
+All i² display uses your standard mirc color choices. (these colors are chosen in mirc color configuration in tools or by pressing alt+k) For example, ctcps are shown using the ctcp color, notify events using the notify color, and many raws using ctcp, info, or normal colors. Many other i² echos are displayed using the 'other' color. No separate i² configuration is needed for display colors. (although you can configure ping time colors, per earlier sections)
 
 
----
--- miscellaneous
--
+----
+--- miscellaneous
+--
 
 When you disconnect from irc, i² will show the amount of time you were connected, in the status window.
 
 i² will have no problems if you change the mirc command character, in options, from the default /. (slash)
-
-All mass modes (opping, deopping, etc. via popups, etc) are done in sets of four. This is supported by 99% of all networks. Some networks support six modes at a time, but this was not implemented.
 
 mirc's ial is forced on and filled when you join a channel, as i² requires it for quick clone/user scans and nick completion, among other things.
 
@@ -344,7 +337,7 @@ You can quickly set any modes in a channel using the 'pseudo-commands' /+ and /-
 
 When a new query opens from a user's message, i² will add a line stating which channel(s) that user is in with you, if any, so you know 'where they are coming from'.
 
-All /dns will appear in the active window, and include a reminder that you can press f7 to copy the last result to the clipboard.
+All /dns will appear in the active window, and include a reminder that you can press f7 to copy the last result to the clipboard. If a /dns returns multiple ips, all will be shown.
 
 When a netsplit occurs, the flood of quits will be 'compressed' into a single line. (although it may wrap to multiple lines)
 
@@ -354,12 +347,12 @@ You can scan your current server's ports using the /ports command or appropriate
 
 All custom windows in i² (port scan, ping/ctcp window, whois window, clones/scan window, userlist editor) automatically remember their position and font settings, so if you move them or change their font, they will open at the same place and with the same font next time.
 
-i² will reply to dcc pings sent by p&p, although it does not directly support the feature itself.
+i² will reply to dcc pings sent by pnp, although it does not directly support the feature itself.
 
 
----
--- function keys
--
+----
+--- function keys
+--
 
 i² includes the following function key definitions-
 
@@ -374,9 +367,19 @@ Open this text file
 Repeat the last sound command you performed.
 
 
+-- ctrl and f2
+
+Stop any currently playing sound, or resume any mp2/mp3 that was stopped earlier using this. (pause and unpause)
+
+
 -- f3
 
 Replay the most recent sound file you selected.
+
+
+-- ctrl and f3
+
+Delete the most recent sound file played, or move it to a 'kill' folder within your mirc directory, if one exists.
 
 
 -- f4
@@ -444,9 +447,9 @@ Set yourself back.
 Set yourself back, quietly.
 
 
----
--- commands
--
+----
+--- commands
+--
 
 i² includes a good number of single-letter 'quick' commands as well as a number of other useful commands.
 
@@ -483,6 +486,11 @@ Performs an 'extended' whois on a user. This is like a normal whois, however it 
 -- /f <nick(s)> [file(s)]
 
 Sends a file to a user. (dcc send) If you specify the file, you must specify the user as well. You may specify multiple users (separated by commas) and the file will go to each user separately. (unlike a normal dcc send, which will not be sent properly to multiple users.) You may specify multiple files separated by spaces. (to specify filenames with spaces, enclose them in quotes.)
+
+
+-- /h <nick(s)|mask>
+
+Halfops one or more users. Specify one or more nicknames, or a mask (such as *.earthlink.net) to act on all matching users. Multiple nicknames can be separated by spaces or commas, and will nick complete.
 
 
 -- /i [-switches] <target(s)> [num]
@@ -596,7 +604,7 @@ This is a special 'pseudo' command. It will set or unset any channel modes. For 
 
 If you specify /+o, /+v, or /+h, you can specify as many nicks as you want, or a mask, and it will work on all the nicks you specified. (using multiple lines if needed). This also goes for /-o, /-v, and /-h. (note that this means you don't need /+ooo a b c, just /+o a b c.) Multiple nicks can be separated with spaces or commas and will nick complete.
 
-If you specify /+b, /+e, or /+I, you can specify as many masks as you want, and it will work on all the nicks you specified. (using multiple lines if needed). This also goes for /-b, /-e, and /-I. (so instead of /+bb *.net *.aol.com, use /+b *.net *.aol.com)
+If you specify /+b, /+e, or /+I, you can specify as many masks as you want, and it will work on all the masks you specified. (using multiple lines if needed). This also goes for /-b, /-e, and /-I. (so instead of /+bb *.net *.aol.com, use /+b *.net *.aol.com)
 
 
 Other commands included- (none of these support nickname completion)
@@ -639,12 +647,12 @@ Just like the normal /userhost command, except with improved display of output.
 
 -- /dns [parameters]
 
-Just like mirc's normal /dns command, except output is displayed to the active window.
+Just like mirc's normal /dns command, except output is displayed to the active window and all ips found are displayed.
 
 
 -- /cfg [code]
 
-Opens up an i² configuration window. Specify a code for the settings window to open- 'p' for channel protection, 'a' for away system, 'd' for display, 'c' for ctcps, 'n' for nicklist colors, 'm' for mp2/mp3 options, 's' for system sounds, 's u' for user sounds, or nothing for miscellaneous config.
+Opens up an i² configuration window. Specify a code for the settings window to open- 'p' for channel protection, 'a' for away system, 'd' for display, 'c' for ctcps, 'm' for mp2/mp3 options, 's' for system sounds, 's u' for user sounds, or nothing for miscellaneous config.
 
 
 -- /retry [channel|nick]
@@ -672,16 +680,16 @@ Performs a port scan on the current server, if it supports /stats l. (dalnet, fo
 Opens up your userlist for viewing and editing. From here you can add/remove users, or give or remove immune or exiled status of users.
 
 
----
--- popups
--
+----
+--- popups
+--
 
 This section briefly covers the popup menus available in i². Note that most popups work under circumstances that other scripts might have trouble with. (for example, all nicklist popups will work with multiple selected users.)
 
 -- status window popups
 
 connect:
-Lets you enter a server and port to connect to.
+Prompts for a server and port to connect to.
 
 ports:
 Performs a port scan on the current server.
@@ -690,7 +698,7 @@ server name:
 A list of the nine most recent server and ports you were connected to, for quick connection.
 
 quit:
-Quit irc and disconnect from you current server.
+Quits irc.
 
 
 -- query/dcc chat window popups
@@ -705,7 +713,7 @@ dns:
 dns lookup on a user. (gets ip address)
 
 ping:
-Pings a user. (to get lag time)
+Pings a user. (gets lag time)
 
 chat:
 Sends a dcc chat request to a user.
@@ -713,16 +721,15 @@ Sends a dcc chat request to a user.
 send:
 Sends a file to a user via dcc.
 
+lists:
 ignore:
-Lets you perform an ignore on a user using one of the given masks, or a temporary (three minute) ignore. Any ignore will also close the query window.
+See channel nicklist popups, below.
 
 
 -- channel nicklist and @scan (clone/user scan) popups
 
-(note- all these popups work on multiple users)
-
 opping:
-Op, deop, voice, and devoice users. Works on multiple users.
+Op, deop, halfop, dehalfop, voice, and devoice users. Works on multiple users. Halfop popups only appear on networks that may support them.
 
 kick:
 Kick one or more users.
@@ -737,19 +744,22 @@ whois:
 Looks up information (/whois) on a user or users.
 
 ping:
-Pings one or more users. (to get lag time)
+Pings one or more users. (gets lag time)
 
 query:
-Opens up a private query window with a user. (works on multiple users as well)
+Opens up a private query window with one or more users.
 
 chat:
-Sends a dcc chat request to a user. (works on multiple users as well)
+Sends a dcc chat request to one or more users.
 
 send:
-Sends a file to a user via dcc. (works on more than one user if desired)
+Sends a file to one or more users via dcc.
 
 lists:
-Allows you to add or remove users to and from your immune list, your exile list, or mirc's protect list. You can also temporarily or permanently ignore a user, or add them to mirc's auto-op list for a channel using a specified mask. Note that your immune and exile lists are controlled by i² and are based on masks, the protect list is controlled by mirc and based on nicknames, and the auto-op list is controlled by mirc and based on masks. (you must turn on mirc's auto-op and protect lists in mirc options, under control, for them work.) These popups will all work on one user or many users. Exiling a user will also bankick them.
+Allows you to add or remove users to and from your immune list or your exile list. You can also add a user to mirc's protect, auto-voice, or auto-op list using a specified mask. Note that your immune and exile lists are controlled by i², and the auto-voice/auto-op/protect lists are controlled by mirc. (you must turn on mirc's auto-op and protect lists in mirc options, under control, for them work.) These popups will all work on one user ormany users. Exiling a user will also bankick them.
+
+ignore:
+Lets you ignore a user or users using a listed mask, or do a temporary (three minute) ignore. Any ignore will also close any open query window.
 
 
 -- channel and menubar popups (same)
@@ -758,16 +768,16 @@ config:
 Lets you configure various i² settings.
 
 channels:
-Lets you join one of up to nine channels you have set, add or remove channels from this list, join them all, clear the list, or toggle auto-join for these channels on or off. (auto-join will join all the channels when you connect to any server, as will ctrl and f10) add/remove work on the current channel window, or ask you for a channel if none are active.
+Lets you join any of the channels stored for the current network, add or remove channels from this list, join them all, clear the list, or toggle auto-join for these channels on or off. Note that the channels and auto-join option are network-specific. (auto-join will join all the channels when you connect to that network, as will ctrl and f10) add/remove work on the current channel window, or ask you for a channel if none are active.
 
 mp2 / mp3:
-Select or find an mp2/mp3 file to play.
+Select or find an mp2/mp3 file to play. Also lets you pause/resume an mp2/mp3.
 
 wav:
-Select or find a wav file to play.
+Select or find a wav file to play. Also lets you stop a currently playing sound.
 
 midi:
-Select or find a midi file to play.
+Select or find a midi file to play. Also lets you stop a currently playing song.
 
 clones:
 Scan the current channel for clones.
@@ -782,9 +792,9 @@ away:
 From this submenu you can set yourself away or back, or set away or back quietly, as well as view and toggle the current status of your pager or message logging.
 
 
----
--- configuration
--
+----
+--- configuration
+--
 
 This section covers configuration options available in i². All configuration sections can be reached via the popups in channel or menubar, under 'configuration'. Each section includes the command you can type to access the configuration manually.
 
@@ -835,11 +845,11 @@ From here, you can configure display-related options.
 
 'Separate Whois window' will put /whois replies in a separate window, preventing them from cluttering up your other windows.
 
-'Names (on join) in status' will show the list of users in a channel in status, when you join the channel. (like normal mirc)
+'Names on join in status' will show the list of users in a channel in status, when you join the channel. (like normal mirc)
 
-'Names (on join) in channel' will show the list of users in a channel in the channel, when you join the channel.
+'Names on join in channel' will show the list of users in a channel in the channel, when you join the channel.
 
-'Hide Names (on join)' will not show the list of users in a channel at all, when first joining the channel. (they will still show if you request them manually with /names.)
+'Hide Names on join' will not show the list of users in a channel at all, when first joining the channel. (they will still show if you request them manually with /names.)
 
 'Perform notify address checks' enables i²'s notify features, which not only show in a more informative manner but allow you to check the address of a user.
 
@@ -877,24 +887,11 @@ Here you can configure how ctcps are displayed. (note that all ctcps received vi
 'High lag color' is a color that will be used for ping replies that are over twenty seconds, to show at a glance that the user is so damn lagged that you probably need to change servers or use a dcc chat to talk to them.
 
 
--- nicklist (/cfg n)
-
-Here you can configure the colors i² uses to color your channel nicklists. Note that this feature cannot simple be 'disabled'- to turn it 'off' you must manually set all (or most of) the colors to the same color.
-
-'Op color' is the color that will be used for channel ops.
-
-'Voiced color' is the color that will be used for voiced users. (unless they are also opped, of course.)
-
-'Regular color' is the color used for users with no special status. (no ops, not voiced.)
-
-'Your color' is the color always used for your nickname, regardless of any other status.
-
-
 -- mp2 / mp3 (/cfg m)
 
-Here you can configure how i² works with mp2 and mp3 files.
+Here you can configure how i² works with mp2/mp3 files.
 
-'mp player' allows you to define a specific program to play your mp2 and mp3 files. If you don't specify a player, i² will attempt to use whatever program is associated with your mp files, but this does not always work.
+'mp player' allows you to define a specific program to play your mp2/mp3 files. If you don't specify a player, i² will attempt to use whatever program is associated with your mp files, but this does not always work.
 
 'mp directory' allows you to define the default directory for storing your mp files. (including subdirectories) If not specified, this defaults to your mirc directory.
 
@@ -903,6 +900,8 @@ Here you can configure how i² works with mp2 and mp3 files.
 'Only play locally', if enabled, will play mp files but only show them to yourself, not saying anything on irc.
 
 'Play mps from others', if enabled, will play mp files that other people play, if you own them.
+
+'Use mIRC internal player', if enabled, will use mirc's internal mp player, instead of an external program.
 
 
 -- other (/cfg)
@@ -921,11 +920,11 @@ This contains miscellaneous options that did not fit into other categories.
 
 'Minimize dqwindow when opened', if on, will minimize the messages window when it is opened, if due to a notice from the above options. If not on, it will become the active window.
 
-'Flash on new query' will cause the mirc icon to flash if you are in another application and someone opens a new query window with you. (this is automatically disabled when you are away.)
+'Flash on new query' will cause mirc to flash if you are in another application and someone opens a new query window with you. (automatically disabled when you are away)
 
-'Flash on private message' will cause the mirc icon to flash if you are in another application and someone privately messages you. (this is automatically disabled when you are away.)
+'Flash on private message' will cause mirc to flash if you are in another application and someone privately messages you. (automatically disabled when you are away)
 
-'Flash on dcc message' will cause the mirc icon to flash if you are in another application and someone says something in a dcc chat window you have open. (this is automatically disabled when you are away.)
+'Flash on dcc message' will cause mirc to flash if you are in another application and someone says something in a dcc chat window you have open. (automatically disabled when you are away)
 
 
 -- sys sounds (/cfg s)
@@ -940,9 +939,9 @@ Here you can configure sounds for system-related events. Remember that you can p
 
 'You part' is played when you leave a channel.
 
-'You opped' is played when someone gives you ops or voice.
+'You opped' is played when someone gives you ops, halfops, or voice.
 
-'You deopped' is played when you get deopped or devoiced.
+'You deopped' is played when you get deopped, dehalfopped, or devoiced.
 
 'User kicked' is played when any user is kicked from a channel. (by any other user)
 
@@ -966,14 +965,14 @@ Here you can configure sounds for user-related events. Remember that you can pre
 'File error' is played when a file you are sending or receiving encounters an error.
 
 
----
--- scripting notes
--
+----
+--- scripting notes
+--
 
 You shouldn't have many compatibility problems with i². It uses variables to store settings- all variables begin with %± to avoid conflicts, and the script will run fine even if you clear all it's variables. (although you will lose some settings.)
 
-I have not skimped on compatibility issues to save space. Proper use was made of local aliases, the & event prefix, etc. It is unlikely that there will be any problems with other properly-made scripts nor with any of the built-in mirc features and settings. If you are having problems, try moving i² to the end of the script order. (press alt+r for remotes, select 'order' from the file menu, select i2.mrc, and press 'down' until it is the last script) This causes i2.mrc to run last, which may help prevent problems, especially with raw events.
+i² should work perfectly fine on multiple servers at the same time.
 
-I'm sure there are probably ways I've missed for squeezing bytes out of the script. I'm not changing my /if formats to remove parenthesis etc., as that is prone to errors. I'm not going to remove code that provides compatibility or other enhancements, either. Otherwise I'm open to suggestions.
+I have not skimped on compatibility issues to save space. Proper use was made of local aliases, & event prefixes, etc. It is unlikely that there will be any problems with other well-behaved scripts nor with any of the built-in mirc features and settings. If you have problems, try moving i² to the end of the script order. (press alt+r for remotes, select 'order' from  the file menu, select i2.mrc, and press 'down' until it is the last script) This causes i2.mrc to run last, which may help prevent problems, especially with raw events.
 
-Enjoy this script, it makes a lovely 'light' script.
+I'm sure there are probably ways I've missed for squeezing bytes out of the script. I'm not removing parenthesis from my /ifs, as that is prone to errors. I'm not going to remove code that provides compatibility or other enhancements, either. Otherwise I'm open to suggestions. Enjoy the script!
