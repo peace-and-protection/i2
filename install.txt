@@ -1,0 +1,39 @@
+
+INSTALL.TXT 
+
+I² by pai
+In order to install I², please read and choose one of the following methods:
+
+Either you
+
+Run the included I2.MSI file 
+
+OR
+
+Create your own mIRC environment for running I² and place the script files there.
+
+METHOD 1
+The easiest way would be running the included I2.MSI file. The MSI file will:
+1. Check if mIRC is installed on Windows. If not found it halts, else it will...;
+2. ...create %appdata%\I2;
+3. ...create %appdata%\I2\script
+3. ...place mirc.ini in %appdata%\I2 and place I2.MRC and I2.TXT in %appdata%\I2\script
+4. ...create a folder and shortcut in the windows start menu. Simply double-click on this shortcut to start mIRC + I²!
+
+METHOD 2
+By manually creating your own mirc environment for running I² you have more control over where the files are installed. 
+This could be archieved in a variety of ways. For example:
+1. Create a folder in Windows Explorer under %appdata% called 'I2'
+2. Place the I2.TXT and I2.MRC files in %appdata%\I2
+3. Create a shortcut on the desktop and point it to:
+"C:\Program	Files (x86)\mIRC\mIRC.exe" -r%appdata%\I2
+4. Double click on the shortcut to run mirc against this environment.
+5. In mIRC type '/load -rs i2.mrc' . You will only have to do this once.
+
+If you have any issues, please come talk to us on EFNet in #peace&protection.
+You can also log an issue at: https://github.com/peace-and-protection/i2/issues
+
+Enjoy!
+
+The Peace and Protection team.
+
