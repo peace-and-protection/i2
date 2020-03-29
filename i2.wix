@@ -19,7 +19,6 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
        	<Directory Id="AppDataFolder">
             <Directory Id="APPLICATIONROOTDIRECTORY" Name="I2">
-				<Directory Id="CONFIG" Name="config"/>
 				<Directory Id="SCRIPT" Name="script"/>
 			</Directory>
 		</Directory>
@@ -50,32 +49,6 @@
      		<File Id='mirc.ini' Name='mirc.ini' DiskId='1' Source='.\mirc.ini' />
 		</Component>
 	</DirectoryRef>
-		<DirectoryRef Id="CONFIG">
-		<Component Id='p.ini' Guid='fae0c689-a668-4395-96ad-d92c3356a55d'>
-			<RegistryValue Root='HKCU' Key='Software\acvxqs\I2'
-            	Name='p.ini'
-            	Value="[APPLICATIONROOTDIRECTORY]config\"
-            	Type='string'
-             	KeyPath='yes' />
-			<File Id='p.ini' Name='p.ini' DiskId='1' Source='.\config\p.ini' />
-		</Component>
-		<Component Id='u.ini' Guid='fa8ef9c6-fed9-407f-94ed-5382457bb425'>
-			<RegistryValue Root='HKCU' Key='Software\acvxqs\I2'
-            	Name='u.ini'
-            	Value="[APPLICATIONROOTDIRECTORY]config\"
-            	Type='string'
-             	KeyPath='yes' />
-			<File Id='u.ini' Name='u.ini' DiskId='1' Source='.\config\u.ini' />
-		</Component>
-		<Component Id='v.ini' Guid='bef1a380-deea-4bc8-91e3-0bfb81feae5c'>
-			<RegistryValue Root='HKCU' Key='Software\acvxqs\I2'
-            	Name='v.ini'
-            	Value="[APPLICATIONROOTDIRECTORY]config\"
-            	Type='string'
-             	KeyPath='yes' />
-			<File Id='v.ini' Name='v.ini' DiskId='1' Source='.\config\v.ini' />
-		</Component>
-	</DirectoryRef>
 	<DirectoryRef Id="SCRIPT">
 		<Component Id='I2.mrc' Guid='a6e7460e-cc42-44d4-8faa-58f241d34700'>
 			<RegistryValue Root='HKCU' Key='Software\acvxqs\I2'
@@ -98,9 +71,6 @@
 	<Feature Id="MainScript" Title="Main Script" Level="1">
 		<ComponentRef Id='ApplicationShortcut' />
 		<ComponentRef Id='mirc.ini' />
-		<ComponentRef Id='p.ini' />
-		<ComponentRef Id='u.ini' />
-		<ComponentRef Id='v.ini' />
 		<ComponentRef Id='I2.mrc' />
 		<ComponentRef Id='I2.txt' />
 	</Feature>
